@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import "./App.css";
 
-function Home({ weather, error }) {
-    console.log(weather);
-    const [isOpen, setIsOpen] = useState(false);
+function Home({ weather, error, isOpen, setIsOpen }) {
     return (
         <>
             <div className="weather-app">
                 <div className="weather-app-top">
-                <h2>Weather<span className="xy">XY</span></h2>
-                    {/*<img
-                            src="https://icons.veryicon.com/png/o/miscellaneous/business-bicolor-icon/weather-109.png"
-                            alt="Weather Illustration"
-                            onClick={() => setIsOpen(true)}
-                            className="default-img"
-                        />*/}
+                    <h2>
+                        Weather<span className="xy">XY</span>
+                    </h2>
                     <span
                         className="material-symbols-outlined"
                         onClick={() => setIsOpen(!isOpen)}
