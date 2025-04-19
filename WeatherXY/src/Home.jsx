@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import "./App.css";
 
-function Home({ weather, error, isOpen, setIsOpen }) {
+function Home({ weather, error, isOpen, setIsOpen, setCity }) {
+    const [otherWeather, setOtherWeather] = useState([]);
+    const otherCities = ["New York", "Tokyo", "Paris", "Delhi", "Cairo", "Sydney"];
+    const WEATHER_API_KEY = "6ba708951b97b015a56ca7ec30d18cf5";
+
+    useEffect(() => {
+        Promise.all(
+            otherCities.map((city) =>
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`)
+                    .then((res) => res.json())
+            )
+        ).then((data) => {
+            const validWeather = data.filter((item) => item.cod === 200);
+            setOtherWeather(validWeather);
+        });
+    }, []);
+    
+
     return (
         <>
             <div className="weather-app">
@@ -79,6 +96,23 @@ function Home({ weather, error, isOpen, setIsOpen }) {
                                 </>
                             )}
                         </div>
+                    </div>
+                </div>
+               <h1 className="others-title">Others Places Weather:-</h1>
+                <div className="others-weather-show-div">
+                    <div className="other-weather-cards">
+                        {otherWeather.map((cityWeather) => (
+                            <div
+                                className="weather-card"
+                                key={cityWeather.id}
+                                onClick={() => setCity(cityWeather.name)}
+                            >
+                                <h2>Weather in {cityWeather.name}</h2>
+                                <p><strong>Condition:</strong> {cityWeather.weather[0].main}</p>
+                                <p><strong>Temp:</strong> 🌡 {cityWeather.main.temp} °C</p>
+                                <p><strong>Humidity:</strong> 💧 {cityWeather.main.humidity}%</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <Outlet />

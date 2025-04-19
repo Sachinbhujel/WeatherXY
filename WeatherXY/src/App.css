@@ -23,13 +23,14 @@ body {
 .weather-app-top h2 {
     cursor: pointer;
     color: white;
-    font-size: 20px;
+    font-size: 23px;
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 1.1px;
 }
 
 .weather-app-top span {
     cursor: pointer;
+    font-size: 30px;
 }
 
 .clouds-img {
@@ -154,16 +155,18 @@ hr {
 .weather-search-div input {
     width: 100%;
     background-color: transparent;
-    padding: 12px;
+    padding: 13px;
     border: none;
     outline: none;
+    font-size: 18px;
 }
 
 .weather-search-div button {
     background-color: #7f7fd5;
     color: white;
-    padding: 12px;
+    padding: 15.3px;
     border: none;
+    font-size: 14px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
@@ -187,18 +190,20 @@ hr {
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .website-open {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
 }
 
 .website-open h1 {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
-    font-size: 26px;
+    font-size: 28px;
     opacity: 0;
     animation: slideFadeDown 1s ease forwards;
 }
@@ -207,7 +212,7 @@ hr {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 14px;
+    font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     opacity: 0;
     animation: fadeInTopRight 1.2s ease forwards;
@@ -225,7 +230,6 @@ hr {
     }
 }
 
-/* Keyframes for p */
 @keyframes fadeInTopRight {
     0% {
         opacity: 0;
@@ -246,6 +250,48 @@ hr {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.others-title{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+.others-weather-show-div {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.other-weather-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.weather-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.weather-card:hover {
+    transform: scale(1.02);
+}
+
+.weather-card h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    margin-bottom: 28px;
+    letter-spacing: 1.1px;
+}
+
+.weather-card p {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 @media (width < 500px) {

@@ -88,6 +88,7 @@ function App() {
                                 error={error}
                                 isOpen={isOpen}
                                 setIsOpen={setIsOpen}
+                                setCity={setCity}
                             />
                         }
                     ></Route>
