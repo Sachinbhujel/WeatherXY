@@ -153,6 +153,7 @@ function Home({ weather, error, isOpen, setIsOpen }) {
                                 key={cityWeather.id}
                             >
                                 <h2>Weather in {cityWeather.name}</h2>
+                                <div className="weather-details">
                                 <p>
                                     <strong>Condition:</strong>{" "}
                                     {cityWeather.weather[0].main}
@@ -165,6 +166,7 @@ function Home({ weather, error, isOpen, setIsOpen }) {
                                     <strong>Humidity:</strong> 💧{" "}
                                     {cityWeather.main.humidity}%
                                 </p>
+                                </div>
                             </div>
                         ))}
                         </div>
