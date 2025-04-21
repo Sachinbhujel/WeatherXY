@@ -11,6 +11,8 @@ body {
 }
 
 .weather-app {
+    margin: auto;
+    max-width: 800px;
     padding: 13px;
 }
 
