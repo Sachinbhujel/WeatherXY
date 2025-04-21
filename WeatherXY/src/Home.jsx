@@ -164,6 +164,51 @@ function Home({ weather, error, isOpen, setIsOpen }) {
                     </div>
                 </div>
 
+                <div className="weather-show-div">
+                    <div className="weather-show-div-top">
+                        <h2>Local Weather</h2>
+                        <span className="material-symbols-outlined">
+                            refresh
+                        </span>
+                    </div>
+                    <hr />
+                    <div className="weather-div">
+                        <div>
+                            {error && <p className="error-msg">{error}</p>}
+                            {!weather && !error && (
+                                <p className="error-msg">Loading weather...</p>
+                            )}
+                            {weather && (
+                                <>
+                                    <h2>Weather in {weather.name}</h2>
+                                    <div className="weather-details">
+                                        <p>
+                                            <strong>Condition:</strong>{" "}
+                                            {weather.weather[0].description}
+                                        </p>
+                                        <p>
+                                            <strong>Temperature:</strong> 🌡
+                                            {weather.main.temp} °C
+                                        </p>
+                                        <p>
+                                            <strong>Humidity:</strong> 💧
+                                            {weather.main.humidity}%
+                                        </p>
+                                        <p>
+                                            <strong>Pressure:</strong>{" "}
+                                            {weather.main.pressure} hPa
+                                        </p>
+                                        <p>
+                                            <strong>Wind Speed:</strong> 💨
+                                            {weather.wind.speed} m/s
+                                        </p>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
                 <Outlet />
             </div>
         </>
