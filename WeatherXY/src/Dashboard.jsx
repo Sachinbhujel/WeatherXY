@@ -16,9 +16,9 @@ function Dashboard({ setCity, weather, error, isOpen, setIsOpen }) {
         <>
             <div className="weather-app">
                 <div className="weather-app-top">
-                    <h2>
-                        Weather<span className="xy">XY</span>
-                    </h2>
+                <a href="#"><h2>
+                        Weather<div className="xy">XY</div>
+                    </h2></a>
                     <span
                         className="material-symbols-outlined"
                         onClick={() => setIsOpen(!isOpen)}
@@ -44,13 +44,13 @@ function Dashboard({ setCity, weather, error, isOpen, setIsOpen }) {
                             close
                         </span>
 
-                        <Link to="/">
+                        <Link to="/" onClick={() => setIsOpen(false)}>
                             <button>Home</button>
                         </Link>
-                        <Link to="/dashboard">
+                        <Link to="/dashboard" onClick={() => setIsOpen(false)}>
                             <button>Dashboard</button>
                         </Link>
-                        <Link to="/map">
+                        <Link to="/map" onClick={() => setIsOpen(false)}>
                             <button>Map</button>
                         </Link>
                     </div>
@@ -60,7 +60,7 @@ function Dashboard({ setCity, weather, error, isOpen, setIsOpen }) {
                         <div>
                             {error && <p className="error-msg">{error}</p>}
                             {!weather && !error && (
-                                <p className="error-msg">Loading weather...</p>
+                                <p className="error-msg">Weather data show here!!</p>
                             )}
                             {weather && (
                                 <>

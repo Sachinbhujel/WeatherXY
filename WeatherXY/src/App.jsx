@@ -7,6 +7,7 @@ import Website_open from "./Website-open";
 
 function App() {
     const [city, setCity] = useState("");
+    const [localWeather, setLocalWeather] = useState(null);
     const [weather, setWeather] = useState(null);
     const [error, setError] = useState("");
     const [isOpen, setIsOpen] = useState(false);
@@ -25,15 +26,15 @@ function App() {
         fetch("https://ipinfo.io/json?token=d0666e8c70b5f8")
             .then((res) => res.json())
             .then((location) => {
-                const city = location.city;
-                if (city) {
+                const localCity = location.city;
+                if (localCity) {
                     fetch(
-                        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
+                        `https://api.openweathermap.org/data/2.5/weather?q=${localCity}&appid=${WEATHER_API_KEY}&units=metric`
                     )
                         .then((res) => res.json())
                         .then((data) => {
                             if (data.cod === 200) {
-                                setWeather(data);
+                                setLocalWeather(data);
                                 setError("");
                             } else {
                                 setError("Weather data not found.");
@@ -52,7 +53,6 @@ function App() {
 
     useEffect(() => {
         if (!city) return;
-
         fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
         )
@@ -84,11 +84,10 @@ function App() {
                         path="/"
                         element={
                             <Home
-                                weather={weather}
+                                weather={localWeather}
                                 error={error}
                                 isOpen={isOpen}
                                 setIsOpen={setIsOpen}
-                                setCity={setCity}
                             />
                         }
                     ></Route>
