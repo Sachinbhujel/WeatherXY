@@ -133,7 +133,7 @@ function Home({ weather, error, isOpen, setIsOpen }) {
                     </div>
                 </div>*/}
 
-                <div className="weather-show-div">
+                <div className="others-weather-div">
                     <div className="weather-show-div-top">
                         <h2>Suggestions</h2>
                         <span className="material-symbols-outlined">
