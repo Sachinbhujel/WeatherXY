@@ -23,6 +23,7 @@ body {
 }
 
 .weather-app-top h2 {
+    text-decoration: underline;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -88,7 +89,7 @@ body {
 
 .weather-show-div {
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: white;
     border-radius: 12px;
     max-width: 800px;
     margin: 50px auto;
@@ -185,6 +186,7 @@ hr {
 
 .xy {
     color: black;
+    text-decoration: underline;
 }
 
 .map-container {
@@ -209,6 +211,7 @@ hr {
 }
 
 .website-open h1 {
+    text-decoration: underline;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 28px;
@@ -226,6 +229,8 @@ hr {
     animation: fadeInTopRight 1.2s ease forwards;
     animation-delay: 0.2s;
 }
+
+
 
 @keyframes slideFadeDown {
     0% {
@@ -267,13 +272,21 @@ hr {
     text-decoration: underline;
 }
 
+.tomorrow-title{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 24px;
+    text-decoration: underline;
+    margin-top: 50px;
+}
+
 a{
     text-decoration: none;
 }
 
 .weather-card {
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: white;
     border-radius: 12px;
     max-width: 800px;
     margin: 20px auto;
@@ -284,6 +297,47 @@ a{
     background-color: gainsboro;
     opacity: 0.9;
 
+}
+
+.tomorrow-weather-details{
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.next-day-button{
+    margin-top: 20px;
+    display: flex;
+    overflow-x: scroll;
+    gap: 20px;
+}
+
+.next-day-button div{
+    width: 130px;
+    height: 70px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    border: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.next-day-button div.active-date-btn {
+    background-color: tomato;
+    font-weight: bold;
+    
+}
+
+.err-msg{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: red;
 }
 
 @media (width < 500px) {
