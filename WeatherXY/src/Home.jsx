@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import "./App.css";
 
-function Home({ weather, error, isOpen, setIsOpen, tomorrowWeather }) {
+function Home({ weather, error, isOpen, setIsOpen }) {
     const [otherWeather, setOtherWeather] = useState([]);
     const otherCities = [
         "New York",

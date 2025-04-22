@@ -12,7 +12,6 @@ function App() {
     const [error, setError] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const [showSplash, setShowSplash] = useState(true);
-    const [tomorrowWeather, setTomorrowWeather] = useState(null);
     const WEATHER_API_KEY = "6ba708951b97b015a56ca7ec30d18cf5";
 
     useEffect(() => {
@@ -37,34 +36,6 @@ function App() {
                             if (data.cod === 200) {
                                 setLocalWeather(data);
                                 setError("");
-                                fetch(
-                                    `https://api.openweathermap.org/data/2.5/forecast?q=${localCity}&appid=${WEATHER_API_KEY}&units=metric`
-                                )
-                                    .then((res) => res.json())
-                                    .then((forecastData) => {
-                                        const tomorrow = new Date();
-                                        tomorrow.setDate(
-                                            tomorrow.getDate() + 1
-                                        );
-                                        const dateStr = tomorrow
-                                            .toISOString()
-                                            .split("T")[0];
-
-                                        const forecastForTomorrow =
-                                            forecastData.list.find(
-                                                (item) =>
-                                                    item.dt_txt.startsWith(
-                                                        dateStr
-                                                    ) &&
-                                                    item.dt_txt.includes(
-                                                        "12:00:00"
-                                                    )
-                                            );
-
-                                        setTomorrowWeather(
-                                            forecastForTomorrow || null
-                                        );
-                                    });
                             } else {
                                 setError("Weather data not found.");
                                 setWeather(null);
@@ -116,7 +87,6 @@ function App() {
                                     error={error}
                                     isOpen={isOpen}
                                     setIsOpen={setIsOpen}
-                                    tomorrowWeather={tomorrowWeather}
                                 />
                             }
                         ></Route>
