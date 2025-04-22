@@ -311,11 +311,18 @@ a{
     display: flex;
     overflow-x: scroll;
     gap: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.next-day-button::-webkit-scrollbar {
+    display: none;
 }
 
 .next-day-button div{
     width: 130px;
     height: 70px;
+    cursor: pointer;
     align-items: center;
     padding: 10px;
     border-radius: 4px;
