@@ -3,14 +3,9 @@ import { Outlet, Link } from "react-router-dom";
 import "./App.css";
 
 function Home({ weather, error, isOpen, setIsOpen }) {
+
     const [otherWeather, setOtherWeather] = useState([]);
-    const otherCities = [
-        "New York",
-        "Tokyo",
-        "Paris",
-        "Delhi",
-        "America",
-    ];
+    const otherCities = ["New York", "Tokyo", "Paris", "Delhi", "America"];
     const WEATHER_API_KEY = "6ba708951b97b015a56ca7ec30d18cf5";
 
     const [selectedDate, setSelectedDate] = useState(() => {
@@ -22,41 +17,40 @@ function Home({ weather, error, isOpen, setIsOpen }) {
     const getNext7Days = () => {
         const today = new Date();
         const days = [];
-    
+
         for (let i = 1; i < 8; i++) {
             const nextDay = new Date(today);
             nextDay.setDate(today.getDate() + i);
             days.push(nextDay);
         }
-    
+
         return days;
     };
-    
-    const weekDates = getNext7Days();   
-    
+
+    const weekDates = getNext7Days();
+
     const [selectedDateWeather, setSelectedDateWeather] = useState(null);
     const fetchWeatherForDate = (date) => {
-        
         fetch(
             `https://api.openweathermap.org/data/2.5/forecast?q=${weather.name}&appid=${WEATHER_API_KEY}&units=metric`
         )
-        .then((res) => res.json())
-        .then((data) => {
-            if (data.cod === "200") {
-                const forecastData = data.list.filter((item) => {
-                    const itemDate = new Date(item.dt * 1000);
-                    return itemDate.toDateString() === date.toDateString();
-                });
-                setSelectedDateWeather(forecastData[0] || null);
-            } else {
-                console.error("Error fetching forecast:", data.message);
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.cod === "200") {
+                    const forecastData = data.list.filter((item) => {
+                        const itemDate = new Date(item.dt * 1000);
+                        return itemDate.toDateString() === date.toDateString();
+                    });
+                    setSelectedDateWeather(forecastData[0] || null);
+                } else {
+                    console.error("Error fetching forecast:", data.message);
+                    setSelectedDateWeather(null);
+                }
+            })
+            .catch((error) => {
+                console.error("API fetch error:", error);
                 setSelectedDateWeather(null);
-            }
-        })
-        .catch((error) => {
-            console.error("API fetch error:", error);
-            setSelectedDateWeather(null);
-        });
+            });
     };
 
     useEffect(() => {
@@ -193,23 +187,31 @@ function Home({ weather, error, isOpen, setIsOpen }) {
 
                 <h1 className="tomorrow-title">Tomorrow's Weather:-</h1>
                 <div className="next-day-button">
-                            {weekDates.map((date, index) => {
-                                const isActive = date.toDateString() === selectedDate.toDateString();
-                                return (
-                                    <div key={index} className={isActive ? "active-date-btn" : ""} onClick={() => setSelectedDate(date)}>
-                                        <h3>{date.toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "short",
-                })}</h3>
-                                    </div>
-                                )
-                            })}
+                    {weekDates.map((date, index) => {
+                        const isActive =
+                            date.toDateString() === selectedDate.toDateString();
+                        return (
+                            <div
+                                key={index}
+                                className={isActive ? "active-date-btn" : ""}
+                                onClick={() => setSelectedDate(date)}
+                            >
+                                <h3>
+                                    {date.toLocaleDateString("en-GB", {
+                                        day: "2-digit",
+                                        month: "short",
+                                    })}
+                                </h3>
+                            </div>
+                        );
+                    })}
                 </div>
                 {selectedDateWeather ? (
                     <div className="weather-div">
                         <div className="weather-details tomorrow-weather-details">
-                        <h2>
-                                🌤 Weather for {weather.name} on {selectedDate.toLocaleDateString("en-GB")}
+                            <h2>
+                                🌤 Weather for {weather.name} on{" "}
+                                {selectedDate.toLocaleDateString("en-GB")}
                             </h2>
                             <div className="weather-details">
                                 <p>
@@ -237,9 +239,11 @@ function Home({ weather, error, isOpen, setIsOpen }) {
                     </div>
                 ) : (
                     <div className="weather-show-div">
-                    <div className="weather-details">
-                        <p className="err-msg">Weather data unavailable for the selected date</p>
-                    </div>
+                        <div className="weather-details">
+                            <p className="err-msg">
+                                Weather data unavailable for the selected date
+                            </p>
+                        </div>
                     </div>
                 )}
 
