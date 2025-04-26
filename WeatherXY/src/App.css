@@ -315,6 +315,12 @@ body {
     margin-top: -1px;
     display: flex;
     gap: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.next-day-button::-webkit-scrollbar {
+    display: none;
 }
 
 .active-date-btn {
