@@ -359,6 +359,14 @@ body {
     font-weight: 300;
 }
 
+.weather-details-detail strong{
+    color: #000000  !important;
+}
+
+.weather-details-detail{
+    color: #495057 !important;
+}
+
 .err-div {
     margin-top: 20px;
     height: 120px;

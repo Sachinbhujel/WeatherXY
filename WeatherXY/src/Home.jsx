@@ -227,26 +227,26 @@ function Home({
                                     {selectedDate.toLocaleDateString("en-GB")}
                                 </h2>
                                 <div className="weather-details">
-                                    <p>
+                                    <p className="weather-details-detail">
                                         <strong>Condition:</strong>{" "}
                                         {
                                             selectedDateWeather.weather[0]
                                                 .description
                                         }
                                     </p>
-                                    <p>
+                                    <p className="weather-details-detail">
                                         <strong>Temp:</strong> 🌡{" "}
                                         {selectedDateWeather.main.temp} °C
                                     </p>
-                                    <p>
+                                    <p className="weather-details-detail">
                                         <strong>Humidity:</strong> 💧{" "}
                                         {selectedDateWeather.main.humidity}%
                                     </p>
-                                    <p>
+                                    <p className="weather-details-detail">
                                         <strong>Wind Speed:</strong> 💨{" "}
                                         {selectedDateWeather.wind.speed} m/s
                                     </p>
-                                    <p>
+                                    <p className="weather-details-detail">
                                         <strong>Pressure:</strong>{" "}
                                         {selectedDateWeather.main.pressure} hPa
                                     </p>
