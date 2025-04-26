@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 
-function Dashboard({ setCity, weather, error, isOpen, setIsOpen }) {
+function Dashboard({ setCity, weather, error, isOpen, setIsOpen, lightTheme, setLightTheme }) {
     const [input, setInput] = useState("");
 
     const handleSearch = () => {
@@ -15,17 +15,40 @@ function Dashboard({ setCity, weather, error, isOpen, setIsOpen }) {
     return (
         <>
             <div className="weather-app">
-                <div className="weather-app-top">
-                <a href="#"><h2>
-                        Weather<div className="xy">XY</div>
-                    </h2></a>
-                    <span
-                        className="material-symbols-outlined"
-                        onClick={() => setIsOpen(!isOpen)}
-                    >
-                        menu
-                    </span>
+            <div className="weather-app-top">
+                    <div className="weather-app-top-title">
+                        <span
+                            class="material-symbols-outlined"
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
+                            menu
+                        </span>
+                        <a href="#">
+                            <h2>
+                                Weather<div className="xy">XY</div>
+                            </h2>
+                        </a>
+                    </div>
+                    <div className="theme-div">
+                        {lightTheme ? (
+                            <span
+                                class="material-symbols-outlined"
+                                onClick={() => setLightTheme(false)}
+                            >
+                                dark_mode
+                            </span>
+                        ) : (
+                            <span
+                                class="material-symbols-outlined"
+                                onClick={() => setLightTheme(true)}
+                            >
+                                light_mode
+                            </span>
+                        )}
+                    </div>
                 </div>
+
+                <div className="dashboard-search-div">
                 <div className="weather-search-div">
                     <input
                         type="text"
@@ -35,65 +58,130 @@ function Dashboard({ setCity, weather, error, isOpen, setIsOpen }) {
                     />
                     <button onClick={handleSearch}>Search</button>
                 </div>
-                {isOpen && (
-                    <div className="sidebar">
-                        <span
-                            className="material-symbols-outlined close-icon"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            close
-                        </span>
+                </div>
 
-                        <Link to="/" onClick={() => setIsOpen(false)}>
-                            <button>Home</button>
-                        </Link>
-                        <Link to="/dashboard" onClick={() => setIsOpen(false)}>
-                            <button>Dashboard</button>
-                        </Link>
-                        <Link to="/map" onClick={() => setIsOpen(false)}>
-                            <button>Map</button>
-                        </Link>
-                    </div>
-                )}
-                <div className="weather-show-div">
-                    <div className="weather-div">
-                        <div>
-                            {error && <p className="error-msg">{error}</p>}
-                            {!weather && !error && (
-                                <p className="error-msg">Weather data show here!!</p>
-                            )}
-                            {weather && (
-                                <>
-                                    <h2 className="weather-place-name">
-                                        Weather in {weather.name}
-                                    </h2>
-                                    <div className="weather-details">
-                                        <p>
-                                            <strong>Condition:</strong>{" "}
-                                            {weather.weather[0].description}
-                                        </p>
-                                        <p>
-                                            <strong>Temperature:</strong> 🌡
-                                            {weather.main.temp} °C
-                                        </p>
-                                        <p>
-                                            <strong>Humidity:</strong> 💧
-                                            {weather.main.humidity}%
-                                        </p>
-                                        <p>
-                                            <strong>Pressure:</strong>{" "}
-                                            {weather.main.pressure} hPa
-                                        </p>
-                                        <p>
-                                            <strong>Wind Speed:</strong> 💨
-                                            {weather.wind.speed} m/s
-                                        </p>
+                {isOpen && (
+                                <div className="sidebar">
+                                    <span
+                                        className="material-symbols-outlined close-icon"
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        close
+                                    </span>
+                
+                                    <div className="buttons-div">
+                                        <Link
+                                            to="/"
+                                            onClick={() => setIsOpen(false)}
+                                            className="link-button"
+                                        >
+                                            <span class="material-symbols-outlined">house</span>
+                                            <button>Home</button>
+                                        </Link>
+                                        <Link
+                                            to="/dashboard"
+                                            onClick={() => setIsOpen(false)}
+                                            className="link-button"
+                                        >
+                                            <span class="material-symbols-outlined">
+                                                monitoring
+                                            </span>
+                                            <button>Dashboard</button>
+                                        </Link>
+                                        <Link
+                                            to="/map"
+                                            onClick={() => setIsOpen(false)}
+                                            className="link-button"
+                                        >
+                                            <span class="material-symbols-outlined">map</span>
+                                            <button>Map</button>
+                                        </Link>
                                     </div>
-                                </>
+                                </div>
                             )}
-                        </div>
+
+<div className="weather-container">
+    {error && <p className="error-msg">{error}</p>}
+    {!weather && !error && (
+        <p className="error-msg">Weather data show here!!</p>
+    )}
+    {weather && (
+        <>
+            
+            <div className="weather-grid">
+                <div className="weather-card">
+                    <div className="weather-card-header">
+                        <span className="icon">🌡️</span>
+                        <span>Temperature</span>
+                    </div>
+                    <div className="weather-main-value">
+                        {weather.main.temp}°C
+                    </div>
+                    <div className="weather-subtext">
+                        Feels like {weather.main.feels_like}°C
+                    </div>
+                    <div className="weather-extra">
+                        <div>High: {weather.main.temp_max}°C</div>
+                        <div>Low: {weather.main.temp_min}°C</div>
                     </div>
                 </div>
+
+                <div className="weather-card">
+                    <div className="weather-card-header">
+                        <span className="icon">💧</span>
+                        <span>Humidity</span>
+                    </div>
+                    <div className="weather-main-value">
+                        {weather.main.humidity}%
+                    </div>
+                    <div className="weather-subtext">
+                        High humidity
+                    </div>
+                </div>
+
+                <div className="weather-card">
+                    <div className="weather-card-header">
+                        <span className="icon">💨</span>
+                        <span>Wind</span>
+                    </div>
+                    <div className="weather-main-value">
+                        {weather.wind.speed} m/s
+                    </div>
+                    <div className="weather-subtext">
+                        Moderate wind
+                    </div>
+                </div>
+
+                <div className="weather-card">
+                    <div className="weather-card-header">
+                        <span className="icon">👀</span>
+                        <span>Visibility</span>
+                    </div>
+                    <div className="weather-main-value">
+                        {weather.visibility / 1000} km
+                    </div>
+                    <div className="weather-subtext">
+                        Clear view
+                    </div>
+                </div>
+
+                <div className="weather-card">
+                    <div className="weather-card-header">
+                        <span className="icon">📈</span>
+                        <span>Pressure</span>
+                    </div>
+                    <div className="weather-main-value">
+                        {weather.main.pressure} hPa
+                    </div>
+                    <div className="weather-subtext">
+                        Stable atmosphere
+                    </div>
+                </div>
+            </div>
+        </>
+    )}
+</div>
+
             </div>
         </>
     );

@@ -12,6 +12,7 @@ function App() {
     const [error, setError] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const [showSplash, setShowSplash] = useState(true);
+    const [lightTheme, setLightTheme] = useState(false);
     const WEATHER_API_KEY = "6ba708951b97b015a56ca7ec30d18cf5";
 
     useEffect(() => {
@@ -87,6 +88,8 @@ function App() {
                                     error={error}
                                     isOpen={isOpen}
                                     setIsOpen={setIsOpen}
+                                    lightTheme={lightTheme}
+                                    setLightTheme={setLightTheme}
                                 />
                             }
                         ></Route>
@@ -99,13 +102,16 @@ function App() {
                                     error={error}
                                     isOpen={isOpen}
                                     setIsOpen={setIsOpen}
+                                    lightTheme={lightTheme}
+                                setLightTheme={setLightTheme}
                                 />
                             }
                         ></Route>
                         <Route
                             path="/map"
                             element={
-                                <Map isOpen={isOpen} setIsOpen={setIsOpen} />
+                                <Map isOpen={isOpen} setIsOpen={setIsOpen} lightTheme={lightTheme}
+                                setLightTheme={setLightTheme} />
                             }
                         ></Route>
                     </Routes>

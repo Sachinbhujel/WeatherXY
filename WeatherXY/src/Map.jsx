@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Map({ isOpen, setIsOpen }) {
+function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
     const [city, setCity] = useState("");
     const [searchCity, setSearchCity] = useState("");
 
@@ -14,25 +14,49 @@ function Map({ isOpen, setIsOpen }) {
         <>
             <div className="weather-app">
                 <div className="weather-app-top">
-                <a href="#"><h2>
-                        Weather<div className="xy">XY</div>
-                    </h2></a>
-                    <span
-                        className="material-symbols-outlined"
-                        onClick={() => setIsOpen(!isOpen)}
-                    >
-                        menu
-                    </span>
+                    <div className="weather-app-top-title">
+                        <span
+                            class="material-symbols-outlined"
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
+                            menu
+                        </span>
+                        <a href="#">
+                            <h2>
+                                Weather<div className="xy">XY</div>
+                            </h2>
+                        </a>
+                    </div>
+                    <div className="theme-div">
+                        {lightTheme ? (
+                            <span
+                                class="material-symbols-outlined"
+                                onClick={() => setLightTheme(false)}
+                            >
+                                dark_mode
+                            </span>
+                        ) : (
+                            <span
+                                class="material-symbols-outlined"
+                                onClick={() => setLightTheme(true)}
+                            >
+                                light_mode
+                            </span>
+                        )}
+                    </div>
                 </div>
-                <div className="weather-search-div">
-                    <input
-                        type="text"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        placeholder="Enter city name......"
-                    />
-                    <button onClick={handleSearch}>Search</button>
-                </div>
+            </div>
+            
+            <div className="search-div">
+            <div className="weather-search-div">
+                <input
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="Enter city name......"
+                />
+                <button onClick={handleSearch}>Search</button>
+            </div>
             </div>
 
             {isOpen && (
@@ -44,20 +68,39 @@ function Map({ isOpen, setIsOpen }) {
                         close
                     </span>
 
-                    <Link to="/" onClick={() => setIsOpen(false)}>
-                        <button>Home</button>
-                    </Link>
-                    <Link to="/dashboard" onClick={() => setIsOpen(false)}>
-                        <button>Dashboard</button>
-                    </Link>
-                    <Link to="/map" onClick={() => setIsOpen(false)}>
-                        <button>Map</button>
-                    </Link>
+                    <div className="buttons-div">
+                        <Link
+                            to="/"
+                            onClick={() => setIsOpen(false)}
+                            className="link-button"
+                        >
+                            <span class="material-symbols-outlined">house</span>
+                            <button>Home</button>
+                        </Link>
+                        <Link
+                            to="/dashboard"
+                            onClick={() => setIsOpen(false)}
+                            className="link-button"
+                        >
+                            <span class="material-symbols-outlined">
+                                monitoring
+                            </span>
+                            <button>Dashboard</button>
+                        </Link>
+                        <Link
+                            to="/map"
+                            onClick={() => setIsOpen(false)}
+                            className="link-button"
+                        >
+                            <span class="material-symbols-outlined">map</span>
+                            <button>Map</button>
+                        </Link>
+                    </div>
                 </div>
             )}
 
             {searchCity && (
-                <div className="map-container" style={{ marginTop: "20px" }}>
+                <div className="map-container" style={{ marginTop: "30px" }}>
                     <iframe
                         title="Google Map"
                         width="100%"
