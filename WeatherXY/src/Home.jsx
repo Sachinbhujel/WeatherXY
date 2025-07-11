@@ -141,7 +141,6 @@ function Home({
                                                     {weather.name}(
                                                     {weather.sys.country})
                                                 </h1>
-                                                <strong>Date:- 12/3/23</strong>
                                             </div>
                                             <div className="celcius-icons-div">
                                                 <div className="celcius-div">
