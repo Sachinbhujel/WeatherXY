@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
@@ -10,6 +10,11 @@ function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
             setSearchCity(city);
         }
     };
+
+    useEffect(() => {
+        document.body.style.backgroundColor = lightTheme ? "white" : "black";
+    }, [lightTheme]);
+
     return (
         <>
             <div className="weather-app">
@@ -48,11 +53,16 @@ function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
             </div>
             
             <div className="search-div">
-            <div className="weather-search-div">
+            <div className="weather-search-div" style={{
+                            backgroundColor: lightTheme ? "black" : "white",
+                        }}>
                 <input
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
+                    style={{
+                            backgroundColor: lightTheme ? "black" : "white",
+                        color : lightTheme ? "white" : "black"}}
                     placeholder="Enter city name......"
                 />
                 <button onClick={handleSearch}>Search</button>

@@ -103,7 +103,7 @@ function App() {
                                     isOpen={isOpen}
                                     setIsOpen={setIsOpen}
                                     lightTheme={lightTheme}
-                                setLightTheme={setLightTheme}
+                                    setLightTheme={setLightTheme}
                                 />
                             }
                         ></Route>

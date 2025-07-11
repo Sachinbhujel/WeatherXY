@@ -14,6 +14,10 @@ function Home({
     const otherCities = ["New York", "Tokyo", "Paris", "Delhi", "America"];
     const WEATHER_API_KEY = "6ba708951b97b015a56ca7ec30d18cf5";
 
+    useEffect(() => {
+    document.body.style.backgroundColor = lightTheme ? "white" : "black";
+  }, [lightTheme]);
+
     const [selectedDate, setSelectedDate] = useState(() => {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
@@ -121,7 +125,7 @@ function Home({
                         </span>
                     </div>
                     <hr />*/}
-                        <h1>Weather Forecast</h1>
+                        <h1 style={{color : lightTheme ? "black" : "white" }}>Weather Forecast</h1>
                         <p>
                             Current weather and 7-day forecast for your location
                         </p>
@@ -192,7 +196,7 @@ function Home({
                         </div>
                     </div>
 
-                    <h1 className="tomorrow-title">7-Day Forecast</h1>
+                    <h1 className="tomorrow-title" style={{color : lightTheme ? "black" : "white" }}>7-Day Forecast</h1>
                     <div className="next-day-button">
                         {weekDates.map((date, index) => {
                             const isActive =
@@ -206,6 +210,9 @@ function Home({
                                             ? "active-date-btn"
                                             : "default-btn"
                                     }
+                                    style={isActive ? {} : {backgroundColor : lightTheme ? "black" : "white",
+                                        color : lightTheme ? "white" : "black"
+                                     }}
                                     onClick={() => setSelectedDate(date)}
                                 >
                                     <h3>
@@ -309,7 +316,7 @@ function Home({
                     </div>
                 )}
                 
-                <h1 className="others-place-title">Other's weather</h1>
+                <h1 className="others-place-title" style={{color : lightTheme ? "black" : "white" }}>Other's weather</h1>
                 <div className="other-place-div">
                     <div>
                         {error && <p className="error-msg">{error}</p>}
