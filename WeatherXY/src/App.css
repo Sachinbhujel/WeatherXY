@@ -21,6 +21,7 @@ body {
     position: fixed;
     top: 0;
     background-color: black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     padding: 10px;
     height: 64px;
@@ -35,7 +36,7 @@ body {
 .weather-app-top-title {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .weather-app-top-title a {
@@ -48,12 +49,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     letter-spacing: 1.1px;
-    font-size: 20px;
+    font-size: 21px;
 }
 
 .weather-app-top-title span {
-    font-size: 22px;
-    padding: 6px;
+    font-size: 28px;
+    padding: 4px;
     border-radius: 6px;
     cursor: pointer;
     color: white;
