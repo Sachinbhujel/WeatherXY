@@ -174,20 +174,20 @@ function Home({
                                                 </div>
                                             </div>
                                             <div className="weather-condition">
-                                                <h4>
+                                                <div>
                                                     <strong style={{fontWeight: "800"}}>🌡Feels like</strong>
-                                                    {weather.main.temp}°C
-                                                </h4>
-                                                <h4>
+                                                    <h4>{weather.main.temp}°C</h4>
+                                                </div>
+                                                <div>
                                                     <strong style={{fontWeight: "800"}}>💧Humidity</strong>
-                                                    {weather.main.humidity}%
-                                                </h4>
-                                                <h4>
+                                                    <h4>{weather.main.humidity}%</h4>
+                                                </div>
+                                                <div>
                                                     <strong style={{fontWeight: "800"}}>
                                                         💨Wind Speed
                                                     </strong>
-                                                    {weather.wind.speed} m/s
-                                                </h4>
+                                                    <h4>{weather.wind.speed} m/s</h4>
+                                                </div>
                                             </div>
                                         </div>
                                     </>
