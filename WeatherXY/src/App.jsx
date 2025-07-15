@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Dashboard from "./Dashboard";
 import Map from "./Map";
 import Website_open from "./Website-open";
+import Forecast from "./Forecast";
 
 function App() {
     const [city, setCity] = useState("");
@@ -18,7 +19,7 @@ function App() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowSplash(false);
-        }, 2800);
+        }, 700);
 
         return () => clearTimeout(timer);
     }, []);
@@ -36,6 +37,7 @@ function App() {
                         .then((data) => {
                             if (data.cod === 200) {
                                 setLocalWeather(data);
+                                setWeather(data);
                                 setError("");
                             } else {
                                 setError("Weather data not found.");
@@ -51,6 +53,13 @@ function App() {
                 setWeather(null);
             });
     }, []);
+
+    // Ensure city is set from weather if not manually set
+    useEffect(() => {
+        if (!city && weather?.name) {
+            setCity(weather.name);
+        }
+    }, [weather]);
 
     useEffect(() => {
         if (!city) return;
@@ -73,6 +82,44 @@ function App() {
             });
     }, [city]);
 
+    const [selectedDateWeather, setSelectedDateWeather] = useState(null);
+
+    const fetchWeatherForDate = useCallback((date) => {
+    const cityName = city || weather?.name;
+    if (!cityName) return;
+
+    fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${WEATHER_API_KEY}&units=metric`
+    )
+        .then((res) => res.json())
+        .then((data) => {
+            if (data.cod === "200") {
+                const forecastData = data.list.filter((item) => {
+                    const itemDate = new Date(item.dt * 1000);
+                    return (
+                        itemDate.getDate() === date.getDate() &&
+                        itemDate.getMonth() === date.getMonth() &&
+                        itemDate.getFullYear() === date.getFullYear()
+                    );
+                });
+                setSelectedDateWeather(forecastData[0] || null);
+            } else {
+                console.error("Error fetching forecast:", data.message);
+                setSelectedDateWeather(null);
+            }
+        })
+        .catch((error) => {
+            console.error("API fetch error:", error);
+            setSelectedDateWeather(null);
+        });
+}, [city, weather]);
+
+    const [selectedDate, setSelectedDate] = useState(() => {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return tomorrow;
+    });
+
     return (
         <>
             {showSplash ? (
@@ -90,9 +137,10 @@ function App() {
                                     setIsOpen={setIsOpen}
                                     lightTheme={lightTheme}
                                     setLightTheme={setLightTheme}
+                                    fetchWeatherForDate={fetchWeatherForDate}
                                 />
                             }
-                        ></Route>
+                        />
                         <Route
                             path="/dashboard"
                             element={
@@ -106,14 +154,34 @@ function App() {
                                     setLightTheme={setLightTheme}
                                 />
                             }
-                        ></Route>
+                        />
                         <Route
                             path="/map"
                             element={
-                                <Map isOpen={isOpen} setIsOpen={setIsOpen} lightTheme={lightTheme}
-                                setLightTheme={setLightTheme} />
+                                <Map
+                                    isOpen={isOpen}
+                                    setIsOpen={setIsOpen}
+                                    lightTheme={lightTheme}
+                                    setLightTheme={setLightTheme}
+                                />
                             }
-                        ></Route>
+                        />
+                        <Route
+                            path="/forecast"
+                            element={
+                                <Forecast
+                                    weather={weather}
+                                    isOpen={isOpen}
+                                    setIsOpen={setIsOpen}
+                                    lightTheme={lightTheme}
+                                    setLightTheme={setLightTheme}
+                                    selectedDateWeather={selectedDateWeather}
+                                    selectedDate={selectedDate}
+                                    setSelectedDate={setSelectedDate}
+                                    fetchWeatherForDate={fetchWeatherForDate}
+                                />
+                            }
+                        />
                     </Routes>
                 </BrowserRouter>
             )}

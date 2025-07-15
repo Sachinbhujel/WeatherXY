@@ -27,10 +27,13 @@ function Dashboard({
     return (
         <>
             <div className="weather-app">
-                <div className="weather-app-top">
+                <div
+                    className="weather-app-top"
+                    style={{ backgroundColor: lightTheme ? "black" : "" }}
+                >
                     <div className="weather-app-top-title">
                         <span
-                            class="material-symbols-outlined"
+                            className="material-symbols-outlined"
                             onClick={() => setIsOpen(!isOpen)}
                         >
                             menu
@@ -44,14 +47,14 @@ function Dashboard({
                     <div className="theme-div">
                         {lightTheme ? (
                             <span
-                                class="material-symbols-outlined"
+                                className="material-symbols-outlined"
                                 onClick={() => setLightTheme(false)}
                             >
                                 dark_mode
                             </span>
                         ) : (
                             <span
-                                class="material-symbols-outlined"
+                                className="material-symbols-outlined"
                                 onClick={() => setLightTheme(true)}
                             >
                                 light_mode
@@ -71,9 +74,10 @@ function Dashboard({
                             type="text"
                             value={input}
                             placeholder="Enter city name......"
+                            className={lightTheme ? "input-light" : "input-dark"}
                             style={{
                                 backgroundColor: lightTheme ? "black" : "white",
-                                color : lightTheme ? "white" : "black"
+                                color: lightTheme ? "white" : "black",
                             }}
                             onChange={(e) => setInput(e.target.value)}
                         />
@@ -96,7 +100,7 @@ function Dashboard({
                                 onClick={() => setIsOpen(false)}
                                 className="link-button"
                             >
-                                <span class="material-symbols-outlined">
+                                <span className="material-symbols-outlined">
                                     house
                                 </span>
                                 <button>Home</button>
@@ -106,7 +110,7 @@ function Dashboard({
                                 onClick={() => setIsOpen(false)}
                                 className="link-button"
                             >
-                                <span class="material-symbols-outlined">
+                                <span className="material-symbols-outlined">
                                     monitoring
                                 </span>
                                 <button>Dashboard</button>
@@ -116,10 +120,20 @@ function Dashboard({
                                 onClick={() => setIsOpen(false)}
                                 className="link-button"
                             >
-                                <span class="material-symbols-outlined">
+                                <span className="material-symbols-outlined">
                                     map
                                 </span>
                                 <button>Map</button>
+                            </Link>
+                            <Link
+                                to="/forecast"
+                                onClick={() => setIsOpen(false)}
+                                className="link-button"
+                            >
+                                <span class="material-symbols-outlined">
+                                    cloud
+                                </span>
+                                <button>Forecast</button>
                             </Link>
                         </div>
                     </div>

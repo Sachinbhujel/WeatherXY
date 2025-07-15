@@ -8,6 +8,10 @@ body {
     background-color: black;
 }
 
+body::-webkit-scrollbar{
+    display: none;
+}
+
 .weather-app {
     width: 100%;
     position: relative;
@@ -322,7 +326,7 @@ body {
 
 .tomorrow-title {
     color: white;
-    padding: 10px;
+    padding: 12px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 29px;
     margin-top: 40px;
@@ -331,12 +335,13 @@ body {
 
 .next-day-button {
     overflow-x: scroll;
-    padding: 10px;
+    padding: 12px;
     margin-top: -1px;
     display: flex;
     gap: 20px;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    width: 100%;
 }
 
 .next-day-button::-webkit-scrollbar {
@@ -361,7 +366,8 @@ body {
 }
 
 .tomorrow-div {
-    margin-bottom: 20px;
+    margin: 12px;
+    margin-bottom: 35px;
 }
 
 .weather-details {
@@ -602,6 +608,17 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 29px;
     letter-spacing: 1.1px;
+    margin-top: 20px;
+}
+
+.input-light::placeholder {
+  color: white;
+  opacity: 0.7;
+}
+
+.input-dark::placeholder {
+  color: black;
+  opacity: 0.7;
 }
 
 @media (min-width: 900px) {

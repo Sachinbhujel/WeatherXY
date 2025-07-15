@@ -18,10 +18,10 @@ function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
     return (
         <>
             <div className="weather-app">
-                <div className="weather-app-top">
+                <div className="weather-app-top" style={{ backgroundColor: lightTheme ? "black" : "" }}>
                     <div className="weather-app-top-title">
                         <span
-                            class="material-symbols-outlined"
+                            className="material-symbols-outlined"
                             onClick={() => setIsOpen(!isOpen)}
                         >
                             menu
@@ -35,14 +35,14 @@ function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
                     <div className="theme-div">
                         {lightTheme ? (
                             <span
-                                class="material-symbols-outlined"
+                                className="material-symbols-outlined"
                                 onClick={() => setLightTheme(false)}
                             >
                                 dark_mode
                             </span>
                         ) : (
                             <span
-                                class="material-symbols-outlined"
+                                className="material-symbols-outlined"
                                 onClick={() => setLightTheme(true)}
                             >
                                 light_mode
@@ -64,6 +64,7 @@ function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
                             backgroundColor: lightTheme ? "black" : "white",
                         color : lightTheme ? "white" : "black"}}
                     placeholder="Enter city name......"
+                    className={lightTheme ? "input-light" : "input-dark"}
                 />
                 <button onClick={handleSearch}>Search</button>
             </div>
@@ -84,7 +85,7 @@ function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
                             onClick={() => setIsOpen(false)}
                             className="link-button"
                         >
-                            <span class="material-symbols-outlined">house</span>
+                            <span className="material-symbols-outlined">house</span>
                             <button>Home</button>
                         </Link>
                         <Link
@@ -92,7 +93,7 @@ function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
                             onClick={() => setIsOpen(false)}
                             className="link-button"
                         >
-                            <span class="material-symbols-outlined">
+                            <span className="material-symbols-outlined">
                                 monitoring
                             </span>
                             <button>Dashboard</button>
@@ -102,9 +103,19 @@ function Map({ isOpen, setIsOpen, lightTheme, setLightTheme }) {
                             onClick={() => setIsOpen(false)}
                             className="link-button"
                         >
-                            <span class="material-symbols-outlined">map</span>
+                            <span className="material-symbols-outlined">map</span>
                             <button>Map</button>
                         </Link>
+                        <Link
+                                to="/forecast"
+                                onClick={() => setIsOpen(false)}
+                                className="link-button"
+                            >
+                                <span class="material-symbols-outlined">
+                                    cloud
+                                </span>
+                                <button>Forecast</button>
+                            </Link>
                     </div>
                 </div>
             )}

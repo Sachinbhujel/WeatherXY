@@ -9,61 +9,17 @@ function Home({
     setIsOpen,
     lightTheme,
     setLightTheme,
+    fetchWeatherForDate,
 }) {
     const [otherWeather, setOtherWeather] = useState([]);
     const otherCities = ["New York", "Tokyo", "Paris", "Delhi", "America"];
     const WEATHER_API_KEY = "6ba708951b97b015a56ca7ec30d18cf5";
 
+    
+
     useEffect(() => {
-    document.body.style.backgroundColor = lightTheme ? "white" : "black";
-  }, [lightTheme]);
-
-    const [selectedDate, setSelectedDate] = useState(() => {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        return tomorrow;
-    });
-
-    const getNext7Days = () => {
-        const today = new Date();
-        const days = [];
-
-        for (let i = 1; i < 8; i++) {
-            const nextDay = new Date(today);
-            nextDay.setDate(today.getDate() + i);
-            days.push(nextDay);
-        }
-
-        return days;
-    };
-
-    const weekDates = getNext7Days();
-
-    const [selectedDateWeather, setSelectedDateWeather] = useState(null);
-    const fetchWeatherForDate = (date) => {
-        fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?q=${weather.name}&appid=${WEATHER_API_KEY}&units=metric`
-        )
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.cod === "200") {
-                    const forecastData = data.list.filter((item) => {
-                        const itemDate = new Date(item.dt * 1000);
-                        return itemDate.toDateString() === date.toDateString();
-                    });
-                    setSelectedDateWeather(forecastData[0] || null);
-                } else {
-                    console.error("Error fetching forecast:", data.message);
-                    setSelectedDateWeather(null);
-                }
-            })
-            .catch((error) => {
-                console.error("API fetch error:", error);
-                setSelectedDateWeather(null);
-            });
-    };
-
-    console.log(weather);
+        document.body.style.backgroundColor = lightTheme ? "white" : "black";
+    }, [lightTheme]);
 
     useEffect(() => {
         Promise.all(
@@ -77,13 +33,17 @@ function Home({
             setOtherWeather(validWeather);
         });
 
-        fetchWeatherForDate(selectedDate);
-    }, [selectedDate]);
+        const today = new Date();
+        fetchWeatherForDate(today);
+    }, []);
 
     return (
         <>
             <div className="weather-app">
-                <div className="weather-app-top" style={{backgroundColor : lightTheme ? "black" : ""}}>
+                <div
+                    className="weather-app-top"
+                    style={{ backgroundColor: lightTheme ? "black" : "" }}
+                >
                     <div className="weather-app-top-title">
                         <span
                             className="material-symbols-outlined"
@@ -107,7 +67,7 @@ function Home({
                             </span>
                         ) : (
                             <span
-                                class="material-symbols-outlined"
+                                className="material-symbols-outlined"
                                 onClick={() => setLightTheme(true)}
                             >
                                 light_mode
@@ -125,7 +85,9 @@ function Home({
                         </span>
                     </div>
                     <hr />*/}
-                        <h1 style={{color : lightTheme ? "black" : "white" }}>Weather Forecast</h1>
+                        <h1 style={{ color: lightTheme ? "black" : "white" }}>
+                            Weather Forecast
+                        </h1>
                         <p>
                             Current weather and 7-day forecast for your location
                         </p>
@@ -149,7 +111,7 @@ function Home({
                                             <div className="celcius-icons-div">
                                                 <div className="celcius-div">
                                                     <img
-                                                        src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                                                        src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                                                         alt={
                                                             weather.weather[0]
                                                                 .description
@@ -161,7 +123,7 @@ function Home({
                                                 </div>
                                                 <div className="icons-div">
                                                     <img
-                                                        src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                                                        src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                                                         alt={
                                                             weather.weather[0]
                                                                 .description
@@ -175,18 +137,40 @@ function Home({
                                             </div>
                                             <div className="weather-condition">
                                                 <div>
-                                                    <strong style={{fontWeight: "800"}}>🌡Feels like</strong>
-                                                    <h4>{weather.main.temp}°C</h4>
+                                                    <strong
+                                                        style={{
+                                                            fontWeight: "800",
+                                                        }}
+                                                    >
+                                                        🌡Feels like
+                                                    </strong>
+                                                    <h4>
+                                                        {weather.main.temp}°C
+                                                    </h4>
                                                 </div>
                                                 <div>
-                                                    <strong style={{fontWeight: "800"}}>💧Humidity</strong>
-                                                    <h4>{weather.main.humidity}%</h4>
+                                                    <strong
+                                                        style={{
+                                                            fontWeight: "800",
+                                                        }}
+                                                    >
+                                                        💧Humidity
+                                                    </strong>
+                                                    <h4>
+                                                        {weather.main.humidity}%
+                                                    </h4>
                                                 </div>
                                                 <div>
-                                                    <strong style={{fontWeight: "800"}}>
+                                                    <strong
+                                                        style={{
+                                                            fontWeight: "800",
+                                                        }}
+                                                    >
                                                         💨Wind Speed
                                                     </strong>
-                                                    <h4>{weather.wind.speed} m/s</h4>
+                                                    <h4>
+                                                        {weather.wind.speed} m/s
+                                                    </h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -196,82 +180,9 @@ function Home({
                         </div>
                     </div>
 
-                    <h1 className="tomorrow-title" style={{color : lightTheme ? "black" : "white" }}>7-Day Forecast</h1>
-                    <div className="next-day-button">
-                        {weekDates.map((date, index) => {
-                            const isActive =
-                                date.toDateString() ===
-                                selectedDate.toDateString();
-                            return (
-                                <div
-                                    key={index}
-                                    className={
-                                        isActive
-                                            ? "active-date-btn"
-                                            : "default-btn"
-                                    }
-                                    style={isActive ? {} : {backgroundColor : lightTheme ? "black" : "white",
-                                        color : lightTheme ? "white" : "black"
-                                     }}
-                                    onClick={() => setSelectedDate(date)}
-                                >
-                                    <h3>
-                                        {date.toLocaleDateString("en-GB", {
-                                            day: "2-digit",
-                                            month: "short",
-                                        })}
-                                    </h3>
-                                </div>
-                            );
-                        })}
-                    </div>
-                    {selectedDateWeather ? (
-                        <div className="weather-div tomorrow-div">
-                            <div className="tomorrow-weather-details">
-                                <h2>
-                                    🌤 Weather for {weather.name} on{" "}
-                                    {selectedDate.toLocaleDateString("en-GB")}
-                                </h2>
-                                <div className="weather-details">
-                                    <div className="weather-details-detail">
-                                        <strong style={{fontWeight: "800"}}>Condition:</strong>{" "}
-                                        <h4>{
-                                            selectedDateWeather.weather[0]
-                                                .description
-                                        }</h4>
-                                    </div>
-                                    <div className="weather-details-detail">
-                                        <strong style={{fontWeight: "800"}}>Temp:</strong>{" "}
-                                        <h4>{selectedDateWeather.main.temp} °C</h4>
-                                    </div>
-                                    <div className="weather-details-detail">
-                                        <strong style={{fontWeight: "800"}}>Humidity:</strong>{" "}
-                                        <h4>{selectedDateWeather.main.humidity}%</h4>
-                                    </div>
-                                    <div className="weather-details-detail">
-                                        <strong style={{fontWeight: "800"}}>Wind Speed:</strong> {" "}
-                                        <h4>{selectedDateWeather.wind.speed} m/s</h4>
-                                    </div>
-                                    <div className="weather-details-detail">
-                                        <strong style={{fontWeight: "800"}}>Pressure:</strong>{" "}
-                                        <h4>{selectedDateWeather.main.pressure} hPa</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="err-div">
-                            <div className="err-details">
-                                <p className="err-msg">
-                                    Weather data unavailable for the selected
-                                    date
-                                </p>
-                            </div>
-                        </div>
-                    )}
-
                     <Outlet />
                 </div>
+
                 {isOpen && (
                     <div className="sidebar">
                         <span
@@ -312,11 +223,26 @@ function Home({
                                 </span>
                                 <button>Map</button>
                             </Link>
+                            <Link
+                                to="/forecast"
+                                onClick={() => setIsOpen(false)}
+                                className="link-button"
+                            >
+                                <span class="material-symbols-outlined">
+                                    cloud
+                                </span>
+                                <button>Forecast</button>
+                            </Link>
                         </div>
                     </div>
                 )}
-                
-                <h1 className="others-place-title" style={{color : lightTheme ? "black" : "white" }}>Other's weather</h1>
+
+                <h1
+                    className="others-place-title"
+                    style={{ color: lightTheme ? "black" : "white" }}
+                >
+                    Other's weather
+                </h1>
                 <div className="other-place-div">
                     <div>
                         {error && <p className="error-msg">{error}</p>}
@@ -324,24 +250,35 @@ function Home({
                             <p className="error-msg">Loading weather...</p>
                         )}
                         {otherWeather.map((cityWeather) => (
-                            <div className="other-weather-main">
+                            <div className="other-weather-main" key={cityWeather.name}>
                                 <div
                                     className="other-weather-card"
-                                    key={cityWeather.id}
                                 >
                                     <h2>Weather in {cityWeather.name}</h2>
                                     <div className="weather-details">
                                         <p>
-                                            <strong style={{fontWeight: "800"}}>Condition:</strong>{" "}
+                                            <strong
+                                                style={{ fontWeight: "800" }}
+                                            >
+                                                Condition:
+                                            </strong>{" "}
                                             {cityWeather.weather[0].main}
                                         </p>
                                         <p>
-                                            <strong style={{fontWeight: "800"}}>Temp:</strong> 🌡{" "}
-                                            {cityWeather.main.temp} °C
+                                            <strong
+                                                style={{ fontWeight: "800" }}
+                                            >
+                                                Temp:
+                                            </strong>{" "}
+                                            🌡 {cityWeather.main.temp} °C
                                         </p>
                                         <p>
-                                            <strong style={{fontWeight: "800"}}>Humidity:</strong> 💧{" "}
-                                            {cityWeather.main.humidity}%
+                                            <strong
+                                                style={{ fontWeight: "800" }}
+                                            >
+                                                Humidity:
+                                            </strong>{" "}
+                                            💧 {cityWeather.main.humidity}%
                                         </p>
                                     </div>
                                 </div>
