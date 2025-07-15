@@ -233,29 +233,29 @@ function Home({
                                     {selectedDate.toLocaleDateString("en-GB")}
                                 </h2>
                                 <div className="weather-details">
-                                    <p className="weather-details-detail">
+                                    <div className="weather-details-detail">
                                         <strong style={{fontWeight: "800"}}>Condition:</strong>{" "}
-                                        {
+                                        <h4>{
                                             selectedDateWeather.weather[0]
                                                 .description
-                                        }
-                                    </p>
-                                    <p className="weather-details-detail">
-                                        <strong style={{fontWeight: "800"}}>Temp:</strong> 🌡{" "}
-                                        {selectedDateWeather.main.temp} °C
-                                    </p>
-                                    <p className="weather-details-detail">
-                                        <strong style={{fontWeight: "800"}}>Humidity:</strong> 💧{" "}
-                                        {selectedDateWeather.main.humidity}%
-                                    </p>
-                                    <p className="weather-details-detail">
-                                        <strong style={{fontWeight: "800"}}>Wind Speed:</strong> 💨{" "}
-                                        {selectedDateWeather.wind.speed} m/s
-                                    </p>
-                                    <p className="weather-details-detail">
+                                        }</h4>
+                                    </div>
+                                    <div className="weather-details-detail">
+                                        <strong style={{fontWeight: "800"}}>Temp:</strong>{" "}
+                                        <h4>{selectedDateWeather.main.temp} °C</h4>
+                                    </div>
+                                    <div className="weather-details-detail">
+                                        <strong style={{fontWeight: "800"}}>Humidity:</strong>{" "}
+                                        <h4>{selectedDateWeather.main.humidity}%</h4>
+                                    </div>
+                                    <div className="weather-details-detail">
+                                        <strong style={{fontWeight: "800"}}>Wind Speed:</strong> {" "}
+                                        <h4>{selectedDateWeather.wind.speed} m/s</h4>
+                                    </div>
+                                    <div className="weather-details-detail">
                                         <strong style={{fontWeight: "800"}}>Pressure:</strong>{" "}
-                                        {selectedDateWeather.main.pressure} hPa
-                                    </p>
+                                        <h4>{selectedDateWeather.main.pressure} hPa</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>

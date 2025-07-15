@@ -385,13 +385,22 @@ body {
     font-weight: 300;
 }
 
-.weather-details-detail strong {
-    color: #000000 !important;
+.weather-details-detail {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.weather-details-detail {
-    color: #495057 !important;
+.weather-details-detail strong{
+    font-size: 19px;
+    color: white;
 }
+
+.weather-details-detail h4{
+    font-size: 16px;
+    color: #ffeb3b;
+}
+
 
 .err-div {
     margin-top: 20px;
