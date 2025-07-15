@@ -83,7 +83,7 @@ function Home({
     return (
         <>
             <div className="weather-app">
-                <div className="weather-app-top">
+                <div className="weather-app-top" style={{backgroundColor : lightTheme ? "black" : ""}}>
                     <div className="weather-app-top-title">
                         <span
                             className="material-symbols-outlined"
