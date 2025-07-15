@@ -392,7 +392,7 @@ body {
 }
 
 .weather-details-detail strong{
-    font-size: 19px;
+    font-size: 18px;
     color: white;
 }
 
@@ -628,6 +628,15 @@ body {
     .weather-condition div {
         flex-direction: row;
     }
+    .weather-details-detail strong{
+    font-size: 17px;
+    color: white;
+}
+
+.weather-details-detail h4{
+    font-size: 15px;
+    color: #ffeb3b;
+}
 }
 
 @media (width<400px) {
