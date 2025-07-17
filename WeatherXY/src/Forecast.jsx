@@ -126,7 +126,7 @@ function Forecast({
                         </h2>
                         <div className="weather-details">
                             <div className="weather-details-detail">
-                                <strong>Condition:</strong>{" "}
+                                <strong style={{fontWeight: "800"}}>Condition:</strong>{" "}
                                 <h4>
                                     {
                                         selectedDateWeather.weather[0]
@@ -135,25 +135,25 @@ function Forecast({
                                 </h4>
                             </div>
                             <div className="weather-details-detail">
-                                <strong>Temp:</strong>{" "}
+                                <strong style={{fontWeight: "800"}}>Temp:</strong>{" "}
                                 <h4>
                                     {selectedDateWeather.main.temp} °C
                                 </h4>
                             </div>
                             <div className="weather-details-detail">
-                                <strong>Humidity:</strong>{" "}
+                                <strong style={{fontWeight: "800"}}>Humidity:</strong>{" "}
                                 <h4>
                                     {selectedDateWeather.main.humidity}%
                                 </h4>
                             </div>
                             <div className="weather-details-detail">
-                                <strong>Wind Speed:</strong>{" "}
+                                <strong style={{fontWeight: "800"}}>Wind Speed:</strong>{" "}
                                 <h4>
                                     {selectedDateWeather.wind.speed} m/s
                                 </h4>
                             </div>
                             <div className="weather-details-detail">
-                                <strong>Pressure:</strong>{" "}
+                                <strong style={{fontWeight: "800"}}>Pressure:</strong>{" "}
                                 <h4>
                                     {selectedDateWeather.main.pressure} hPa
                                 </h4>
