@@ -86,7 +86,7 @@ function Home({
                         <h1 style={{ color: lightTheme ? "black" : "white" }}>
                             Weather Forecast
                         </h1>
-                        <p>Current weather for your location</p>
+                        <p>View real-time weather updates for your area including temperature, conditions, and humidity.</p>
                         <div className="weather-div">
                             <div>
                                 {error && <p className="error-msg">{error}</p>}

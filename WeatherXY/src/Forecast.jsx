@@ -85,7 +85,7 @@ function Forecast({
             >
                 7-Day Forecast
             </h1>
-            <p className="forecast-desc">7 days forecast for your location</p>
+            <p className="forecast-desc">Stay updated with accurate weather conditions for the next 7 days.</p>
 
             <div className="next-day-button">
                 {weekDates.map((date, index) => {
