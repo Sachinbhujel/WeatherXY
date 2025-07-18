@@ -8,7 +8,7 @@ body {
     background-color: black;
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
     display: none;
 }
 
@@ -38,7 +38,6 @@ body::-webkit-scrollbar{
     justify-content: space-between;
     border-color: white;
 }
-
 
 .weather-app-top-title {
     display: flex;
@@ -195,16 +194,8 @@ body::-webkit-scrollbar{
 .weather-div {
     border-radius: 8px;
     background: #6a3093;
-    background: -webkit-linear-gradient(
-        to right,
-        #a044ff,
-        #6a3093
-    );
-    background: linear-gradient(
-        to right,
-        #a044ff,
-        #6a3093
-    );
+    background: -webkit-linear-gradient(to right, #a044ff, #6a3093);
+    background: linear-gradient(to right, #a044ff, #6a3093);
     padding: 10px;
     margin-top: 20px;
     padding-bottom: 16px;
@@ -267,6 +258,8 @@ body::-webkit-scrollbar{
 
 .weather-condition div strong {
     font-size: 18px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
 }
 
 .weather-condition div h4 {
@@ -326,7 +319,7 @@ body::-webkit-scrollbar{
 
 .tomorrow-title {
     color: white;
-    padding: 12px;
+    padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 29px;
     margin-top: 40px;
@@ -397,17 +390,17 @@ body::-webkit-scrollbar{
     gap: 5px;
 }
 
-.weather-details-detail strong{
+.weather-details-detail strong {
     font-size: 18px;
     color: white;
     font-weight: 800;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.weather-details-detail h4{
+.weather-details-detail h4 {
     font-size: 16px;
     color: #ffeb3b;
 }
-
 
 .err-div {
     margin-top: 20px;
@@ -613,13 +606,21 @@ body::-webkit-scrollbar{
 }
 
 .input-light::placeholder {
-  color: white;
-  opacity: 0.7;
+    color: white;
+    opacity: 0.7;
 }
 
 .input-dark::placeholder {
-  color: black;
-  opacity: 0.7;
+    color: black;
+    opacity: 0.7;
+}
+
+.forecast-desc {
+    padding: 20px;
+    color: #94949e;
+    margin-top: -30px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 @media (min-width: 900px) {
@@ -646,15 +647,15 @@ body::-webkit-scrollbar{
     .weather-condition div {
         flex-direction: row;
     }
-    .weather-details-detail strong{
-    font-size: 17px;
-    color: white;
-}
+    .weather-details-detail strong {
+        font-size: 17px;
+        color: white;
+    }
 
-.weather-details-detail h4{
-    font-size: 15px;
-    color: #ffeb3b;
-}
+    .weather-details-detail h4 {
+        font-size: 15px;
+        color: #ffeb3b;
+    }
 }
 
 @media (width<400px) {

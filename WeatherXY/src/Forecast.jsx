@@ -34,9 +34,9 @@ function Forecast({
         }
     }, [selectedDate, fetchWeatherForDate]);
 
-     useEffect(() => {
-            document.body.style.backgroundColor = lightTheme ? "white" : "black";
-        }, [lightTheme]);
+    useEffect(() => {
+        document.body.style.backgroundColor = lightTheme ? "white" : "black";
+    }, [lightTheme]);
 
     return (
         <div className="weather-app">
@@ -78,10 +78,14 @@ function Forecast({
 
             <h1
                 className="tomorrow-title"
-                style={{ color: lightTheme ? "black" : "white", marginTop: "64px"}}
+                style={{
+                    color: lightTheme ? "black" : "white",
+                    marginTop: "64px",
+                }}
             >
                 7-Day Forecast
             </h1>
+            <p className="forecast-desc">7 days forecast for your location</p>
 
             <div className="next-day-button">
                 {weekDates.map((date, index) => {
@@ -126,37 +130,36 @@ function Forecast({
                         </h2>
                         <div className="weather-details">
                             <div className="weather-details-detail">
-                                <strong style={{fontWeight: "800"}}>Condition:</strong>{" "}
+                                <strong style={{ fontWeight: "800" }}>
+                                    Condition:
+                                </strong>{" "}
                                 <h4>
-                                    {
-                                        selectedDateWeather.weather[0]
-                                            .description
-                                    }
+                                    {selectedDateWeather.weather[0].description}
                                 </h4>
                             </div>
                             <div className="weather-details-detail">
-                                <strong style={{fontWeight: "800"}}>Temp:</strong>{" "}
-                                <h4>
-                                    {selectedDateWeather.main.temp} °C
-                                </h4>
+                                <strong style={{ fontWeight: "800" }}>
+                                    Temp:
+                                </strong>{" "}
+                                <h4>{selectedDateWeather.main.temp} °C</h4>
                             </div>
                             <div className="weather-details-detail">
-                                <strong style={{fontWeight: "800"}}>Humidity:</strong>{" "}
-                                <h4>
-                                    {selectedDateWeather.main.humidity}%
-                                </h4>
+                                <strong style={{ fontWeight: "800" }}>
+                                    Humidity:
+                                </strong>{" "}
+                                <h4>{selectedDateWeather.main.humidity}%</h4>
                             </div>
                             <div className="weather-details-detail">
-                                <strong style={{fontWeight: "800"}}>Wind Speed:</strong>{" "}
-                                <h4>
-                                    {selectedDateWeather.wind.speed} m/s
-                                </h4>
+                                <strong style={{ fontWeight: "800" }}>
+                                    Wind Speed:
+                                </strong>{" "}
+                                <h4>{selectedDateWeather.wind.speed} m/s</h4>
                             </div>
                             <div className="weather-details-detail">
-                                <strong style={{fontWeight: "800"}}>Pressure:</strong>{" "}
-                                <h4>
-                                    {selectedDateWeather.main.pressure} hPa
-                                </h4>
+                                <strong style={{ fontWeight: "800" }}>
+                                    Pressure:
+                                </strong>{" "}
+                                <h4>{selectedDateWeather.main.pressure} hPa</h4>
                             </div>
                         </div>
                     </div>
@@ -171,58 +174,52 @@ function Forecast({
                 </div>
             )}
             {isOpen && (
-                    <div className="sidebar">
-                        <span
-                            className="material-symbols-outlined close-icon"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            close
-                        </span>
+                <div className="sidebar">
+                    <span
+                        className="material-symbols-outlined close-icon"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        close
+                    </span>
 
-                        <div className="buttons-div">
-                            <Link
-                                to="/"
-                                onClick={() => setIsOpen(false)}
-                                className="link-button"
-                            >
-                                <span class="material-symbols-outlined">
-                                    house
-                                </span>
-                                <button>Home</button>
-                            </Link>
-                            <Link
-                                to="/dashboard"
-                                onClick={() => setIsOpen(false)}
-                                className="link-button"
-                            >
-                                <span class="material-symbols-outlined">
-                                    monitoring
-                                </span>
-                                <button>Dashboard</button>
-                            </Link>
-                            <Link
-                                to="/map"
-                                onClick={() => setIsOpen(false)}
-                                className="link-button"
-                            >
-                                <span class="material-symbols-outlined">
-                                    map
-                                </span>
-                                <button>Map</button>
-                            </Link>
-                            <Link
-                                to="/forecast"
-                                onClick={() => setIsOpen(false)}
-                                className="link-button"
-                            >
-                                <span class="material-symbols-outlined">
-                                    cloud
-                                </span>
-                                <button>Forecast</button>
-                            </Link>
-                        </div>
+                    <div className="buttons-div">
+                        <Link
+                            to="/"
+                            onClick={() => setIsOpen(false)}
+                            className="link-button"
+                        >
+                            <span class="material-symbols-outlined">house</span>
+                            <button>Home</button>
+                        </Link>
+                        <Link
+                            to="/dashboard"
+                            onClick={() => setIsOpen(false)}
+                            className="link-button"
+                        >
+                            <span class="material-symbols-outlined">
+                                monitoring
+                            </span>
+                            <button>Dashboard</button>
+                        </Link>
+                        <Link
+                            to="/map"
+                            onClick={() => setIsOpen(false)}
+                            className="link-button"
+                        >
+                            <span class="material-symbols-outlined">map</span>
+                            <button>Map</button>
+                        </Link>
+                        <Link
+                            to="/forecast"
+                            onClick={() => setIsOpen(false)}
+                            className="link-button"
+                        >
+                            <span class="material-symbols-outlined">cloud</span>
+                            <button>Forecast</button>
+                        </Link>
                     </div>
-                )}
+                </div>
+            )}
         </div>
     );
 }

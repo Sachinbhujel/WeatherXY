@@ -15,8 +15,6 @@ function Home({
     const otherCities = ["New York", "Tokyo", "Paris", "Delhi", "America"];
     const WEATHER_API_KEY = "6ba708951b97b015a56ca7ec30d18cf5";
 
-    
-
     useEffect(() => {
         document.body.style.backgroundColor = lightTheme ? "white" : "black";
     }, [lightTheme]);
@@ -88,9 +86,7 @@ function Home({
                         <h1 style={{ color: lightTheme ? "black" : "white" }}>
                             Weather Forecast
                         </h1>
-                        <p>
-                            Current weather and 7-day forecast for your location
-                        </p>
+                        <p>Current weather for your location</p>
                         <div className="weather-div">
                             <div>
                                 {error && <p className="error-msg">{error}</p>}
@@ -250,10 +246,11 @@ function Home({
                             <p className="error-msg">Loading weather...</p>
                         )}
                         {otherWeather.map((cityWeather) => (
-                            <div className="other-weather-main" key={cityWeather.name}>
-                                <div
-                                    className="other-weather-card"
-                                >
+                            <div
+                                className="other-weather-main"
+                                key={cityWeather.name}
+                            >
+                                <div className="other-weather-card">
                                     <h2>Weather in {cityWeather.name}</h2>
                                     <div className="weather-details">
                                         <p>
